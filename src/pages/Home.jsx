@@ -33,7 +33,7 @@ export default function Home() {
                 <a href={"#header"} className="text-3xl md:text-4xl font-bold h-full py-4" aria-label="Go to homepage">
                     <LazyLoadImage src="./images/logo.webp" alt="CatalogueWala" width={100} height={54} />
                 </a>
-                <div className="hidden md:flex gap-4" role="navigation" aria-label="Primary navigation">
+                <div className="hidden md:flex gap-4 items-center" role="navigation" aria-label="Primary navigation">
                     <a href={"#header"} className="nav-item">Home</a>
                     <a href={"#features"} className="nav-item">Features</a>
                     <a href={"#benefits"} className="nav-item">Benefits</a>
@@ -41,14 +41,14 @@ export default function Home() {
         <a href={"#price"} className="nav-item">Price</a>
         <a href={"#testimonial"} className="nav-item">Testimonials</a>
         */}
+                    <a href="#contact-us" className="home-button hidden md:block" aria-label="Contact us">Contact Us</a>
                 </div>
-                <a href="#contact-us" className="home-button hidden md:block" aria-label="Contact us">Contact Us</a>
                 {/* Mobile Menu Button */}
                 <button onClick={toggleMobileNav} className="md:hidden" aria-label={isMobileNavOpen ? "Close mobile navigation" : "Open mobile navigation"}>
                     {isMobileNavOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
                 {isMobileNavOpen && (
-                    <nav className="md:hidden bg-white shadow-md p-4 absolute w-full left-0 top-16 z-50 animate-in fade-in" aria-label="Mobile navigation">
+                    <nav className="md:hidden bg-white shadow-md p-4 absolute w-full left-0 top-24 z-50 animate-in fade-in" aria-label="Mobile navigation">
                         <a href={"#header"} className="block py-2">Home</a>
                         <a href={"#features"} className="block py-2">Features</a>
                         <a href={"#benefits"} className="block py-2">Benefits</a>
