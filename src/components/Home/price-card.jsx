@@ -13,11 +13,11 @@ function PriceCard({ title, description, price, features }) {
             <p className="mt-2 text-center">{description}</p>
 
             <div className="mt-6 flex items-center">
-                <p className="text-7xl text-home group-even:text-white font-bold">{price}</p>
-                <div className="ml-2 flex flex-col items-start">
+                <p className="text-7xl text-home group-even:text-white font-bold">{currencyIcon}{price}</p>
+                {/* <div className="ml-2 flex flex-col items-start">
                     <p className="text-home group-even:text-white font-bold text-2xl">{currencyIcon}</p>
                     <p className="text-[#AFAFAF] group-even:text-[#E0E0E0] -mt-1">Per / year</p>
-                </div>
+                </div> */}
             </div>
 
             <div className="mt-5 text-left">
