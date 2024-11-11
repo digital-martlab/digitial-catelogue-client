@@ -2,6 +2,7 @@ import BenefitItem from "@/components/Home/benefit-item";
 import CheckedItem from "@/components/Home/checked-item";
 import ContactUs from "@/components/Home/contact-us";
 import Feature from "@/components/Home/feature-items";
+import PriceCard from "@/components/Home/price-card";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { ArrowBigUp, Mail, Menu, Palette, PhoneCall, PlayIcon, Smartphone, Store, X } from "lucide-react";
@@ -228,12 +229,24 @@ export default function Home() {
                 </div>
             </div> */}
 
-            {/* <section id="price" className="container mt-28 text-center" data-aos="fade-up">
-                <h3 className="text-[32px] font-bold">Plan</h3>
+            <section id="price" className="container mt-28 text-center" data-aos="fade-up">
+                <h3 className="text-[32px] font-bold">Plans</h3>
                 <p className="font-medium">We offer competitive price</p>
 
                 <div className="mt-11 grid gap-8 md:gap-5 md:grid-cols-3 lg:gap-8 xl:gap-16 justify-center">
-                    <span></span>
+                    {/* <span></span> */}
+                    <PriceCard
+                        title="Monthly Plan"
+                        description="Brief price description"
+                        price="600"
+                        features={[
+                            "Theme Customization",
+                            "WhatsApp Integration",
+                            "Product Management",
+                            "Category Creation",
+                            "Coupon Management",
+                        ]}
+                    />
                     <PriceCard
                         title="Yearly Plan"
                         description="Brief price description"
@@ -246,21 +259,20 @@ export default function Home() {
                             "Coupon Management",
                         ]}
                     />
-                    <span></span>
                     <PriceCard
-                        title="Standard"
+                        title="Half Yearly Plan"
                         description="Brief price description"
-                        price="5"
-                        operators="5+"
-                    />
-                    <PriceCard
-                        title="Premium"
-                        description="Brief price description"
-                        price="10"
-                        operators="10+"
+                        price="3000"
+                        features={[
+                            "Theme Customization",
+                            "WhatsApp Integration",
+                            "Product Management",
+                            "Category Creation",
+                            "Coupon Management",
+                        ]}
                     />
                 </div>
-            </section> */}
+            </section>
 
             {/* <section id="testimonials" className="container mt-36 text-center flex flex-col items-center" data-aos="fade-right">
                 <h3 className="text-4xl font-bold">What Clients Say</h3>

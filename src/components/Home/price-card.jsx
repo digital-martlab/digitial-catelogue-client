@@ -3,6 +3,10 @@ import { CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function PriceCard({ title, description, price, features }) {
+    const message = `Hello! I am interested in the ${title} plan which costs ${currencyIcon}${price} per year. I would like to book a demo to learn more about the features and benefits.`;
+
+    const encodedMessage = encodeURIComponent(message);
+
     return (
         <div className="border min-w-[80vw] sm:min-w-[400px] md:min-w-full group even:bg-home even:text-white flex flex-col items-center rounded-xl shadow-borderShadow p-6">
             <h4 className="mt-6 font-bold text-2xl text-center">{title}</h4>
@@ -26,7 +30,13 @@ function PriceCard({ title, description, price, features }) {
                 ))}
             </div>
 
-            <Link to="mailto:info@digitalmartlab.com" className="home-button-white mt-12 md:mt-8 lg:mt-12 inline-block ">Book a Demo</Link>
+            <Link
+                to={`https://wa.me/918299207159?text=${encodedMessage}`}
+                target="_blank"
+                className="home-button-white mt-12 md:mt-8 lg:mt-12 inline-block"
+            >
+                Book a Demo
+            </Link>
         </div>
     );
 }
