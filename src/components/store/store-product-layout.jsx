@@ -28,7 +28,7 @@ export function ProductGridLayout({ setDisplayProductDetails }) {
                     </div>
                     <div className="space-y-2 p-4 text-center">
                         <p
-                            className="w-full cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap text-lg font-bold"
+                            className="w-full cursor-pointer overflow-hidden text-ellipsis whitespace-nowrap text-sm font-bold"
                         >
                             {item.title}
                         </p>
@@ -70,7 +70,7 @@ export function ProductListLayout({ setDisplayProductDetails }) {
                             </span>
                         </p>
                         <p
-                            className="text-base font-bold md:text-2xl"
+                            className="font-bold md:text-sm"
                         >
                             {item?.title}
                         </p>

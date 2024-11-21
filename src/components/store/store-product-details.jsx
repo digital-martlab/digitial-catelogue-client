@@ -31,9 +31,9 @@ export default function StoreProductDetails({ item, setDisplayProductDetails }) 
     return (
         <Dialog open={!!item} onOpenChange={() => setDisplayProductDetails(null)}>
             <DialogContent className="w-[95vw] max-w-[700px] p-4 sm:p-6 rounded-lg shadow-lg">
-                <DialogHeader>
+                {/* <DialogHeader>
                     <DialogTitle className="text-lg sm:text-xl font-semibold">{item.title}</DialogTitle>
-                </DialogHeader>
+                </DialogHeader> */}
                 <div className="grid gap-4 sm:grid-cols-[300px_1fr]">
                     <div className="flex sm:flex-col gap-2 sm:gap-4">
                         <div className="h-52 sm:h-64 w-full rounded-lg border overflow-hidden cursor-pointer">
@@ -69,11 +69,11 @@ export default function StoreProductDetails({ item, setDisplayProductDetails }) 
                         <div className="flex gap-2">
                             <span className="rounded-sm bg-accent px-2 py-1 text-xs">{item.ctg_name}</span>
                         </div>
-                        <p className="text-lg sm:text-2xl font-bold">{item.title}</p>
+                        <p className="text-lg sm:text-xl font-semibold">{item.title}</p>
                         <p className="text-sm text-gray-600">{item.description}</p>
 
                         <div>
-                            <p className="mb-2 font-semibold">Select Variant:</p>
+                            <p className="mb-2 text-sm font-normal">Select Variant:</p>
                             <Select
                                 value={selectedVariantIndex.toString()}
                                 onValueChange={(value) => setSelectedVariantIndex(parseInt(value, 10))}
@@ -90,8 +90,8 @@ export default function StoreProductDetails({ item, setDisplayProductDetails }) 
                                 </SelectContent>
                             </Select>
 
-                            <div className="mt-3 sm:mt-4">
-                                <p className="font-semibold">Selected Variant: <span className="font-bold">{selectedVariant?.variant_title}</span></p>
+                            <div className="mt-3 sm:mt-4 text-sm">
+                                <p >Selected Variant: <span>{selectedVariant?.variant_title}</span></p>
                                 <p className="mt-2 text-lg font-bold">{currencyIcon}{selectedVariant?.price}</p>
                                 <p className="mt-1">
                                     {selectedVariant?.stock <= 20 && selectedVariant?.stock > 0 &&

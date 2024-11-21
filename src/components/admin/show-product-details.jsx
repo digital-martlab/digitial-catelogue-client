@@ -26,9 +26,9 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
     return (
         <Dialog open={!!item} onOpenChange={() => setDisplayProductDetails(null)}>
             <DialogContent className="w-[95vw] max-w-[700px] p-4 sm:p-6 rounded-lg shadow-lg bg-card">
-                <DialogHeader>
+                {/* <DialogHeader>
                     <DialogTitle className="text-xl font-semibold">{item.title}</DialogTitle>
-                </DialogHeader>
+                </DialogHeader> */}
                 <div className="grid gap-4 sm:grid-cols-[300px_1fr]">
                     <div className="flex sm:flex-col gap-2 sm:gap-4">
                         <div className="h-52 sm:h-64 w-full rounded-lg border overflow-hidden">
@@ -36,7 +36,7 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                                 <img
                                     alt={item.title}
                                     src={displayImage}
-                                    className="h-full w-full object-cover"
+                                    className="h-full w-full object-contain"
                                 />
                             )}
                         </div>
@@ -63,11 +63,11 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                         <div className="flex gap-2">
                             <span className="rounded-sm bg-accent px-2 py-1 text-xs">{item.ctg_name}</span>
                         </div>
-                        <p className="text-lg sm:text-2xl font-bold">{item.title}</p>
+                        <p className="text-lg font-semibold">{item.title}</p>
                         <p className="text-sm text-gray-600">{item.description}</p>
 
                         <div>
-                            <p className="mb-2 font-semibold">Select Variant:</p>
+                            <p className="mb-2 text-sm">Select Variant:</p>
                             <Select
                                 value={selectedVariantIndex.toString()}
                                 onValueChange={(value) => setSelectedVariantIndex(parseInt(value, 10))}
@@ -85,7 +85,7 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                             </Select>
 
                             <div className="mt-4">
-                                <p className="font-semibold">Selected Variant: <span className="font-bold">{selectedVariant?.variant_title}</span></p>
+                                <p className="text-sm">Selected Variant: <span>{selectedVariant?.variant_title}</span></p>
                                 <p className="mt-2 text-lg font-bold">{currencyIcon}{selectedVariant?.price}</p>
                                 <p className="mt-1">Stock: <span className={selectedVariant?.stock > 0 ? 'text-green-500' : 'text-red-500'}>{selectedVariant?.stock}</span></p>
                             </div>

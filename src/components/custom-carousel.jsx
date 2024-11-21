@@ -9,7 +9,7 @@ const CustomCarousel = () => {
 
     return (
         <Dialog open={!!images?.length} onOpenChange={handleRemoveImages}>
-            <DialogContent className="z-[99999999] flex items-center justify-center bg-black bg-opacity-80 transition-opacity duration-300 p-4 md:p-8">
+            <DialogContent className="z-[99999999] flex items-center justify-center bg-opacity-80 transition-opacity duration-300 p-4 md:p-8">
                 {/* Close Button */}
                 {/* <Button
                     variant="outline"
