@@ -7,7 +7,7 @@ export function ProductGridLayout({ setDisplayProductDetails }) {
     const { filteredProducts } = useStore();
 
     return (
-        <div className="grid gap-4 pt-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+        <div className="grid gap-4 pt-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4">
             {filteredProducts.map((item) => (
                 <div
                     key={item.product_id}
@@ -19,11 +19,11 @@ export function ProductGridLayout({ setDisplayProductDetails }) {
                     <span className="absolute left-2 top-2 rounded-lg bg-accent px-2 py-1 text-xs">
                         {item.ctg_name}
                     </span>
-                    <div className="h-40">
+                    <div className="aspect-square">
                         <LazyLoadImage
                             alt={item.title}
                             src={item.images?.[0]?.url}
-                            className="h-full w-full object-contain"
+                            className="h-full w-full object-contain aspect-square"
                         />
                     </div>
                     <div className="space-y-2 p-4 text-center">
@@ -61,7 +61,7 @@ export function ProductListLayout({ setDisplayProductDetails }) {
                     onClick={() => setDisplayProductDetails(item)}
                 >
                     <div className="h-40 w-40 rounded-lg border bg-background overflow-hidden">
-                        <LazyLoadImage src={item?.images?.[0]?.url} alt="product" className='w-full h-full object-container' />
+                        <LazyLoadImage src={item?.images?.[0]?.url} alt="product" className='w-full h-full object-contain aspect-square' />
                     </div>
                     <div className="flex-1 space-y-2">
                         <p className="flex gap-2">

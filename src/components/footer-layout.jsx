@@ -1,3 +1,6 @@
+import { Mail, PhoneCall } from "lucide-react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
 export default function Footer() {
     return (
         <footer className="mt-24 pt-12 pb-8 bg-gray-900 text-gray-300" aria-label="Footer">

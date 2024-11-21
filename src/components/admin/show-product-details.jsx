@@ -31,7 +31,7 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                 </DialogHeader> */}
                 <div className="grid gap-4 sm:grid-cols-[300px_1fr]">
                     <div className="flex sm:flex-col gap-2 sm:gap-4">
-                        <div className="h-52 sm:h-64 w-full rounded-lg border overflow-hidden">
+                        <div className="aspect-[3/4] w-full rounded-lg border overflow-hidden">
                             {displayImage && (
                                 <img
                                     alt={item.title}
@@ -45,7 +45,7 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                                 <div
                                     key={img.img_id}
                                     className={cn(
-                                        'h-16 sm:h-20 cursor-pointer rounded-lg border transition duration-200 ease-in-out',
+                                        'aspect-square cursor-pointer rounded-lg border transition duration-200 ease-in-out',
                                         displayImage === img.url ? 'border-primary transform scale-105' : ''
                                     )}
                                     onClick={() => setDisplayImage(img.url)}
@@ -53,7 +53,7 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                                     <img
                                         alt={item.title}
                                         src={img.url}
-                                        className="h-full w-full object-cover rounded-lg"
+                                        className="h-full w-full object-cover rounded-lg aspect-square"
                                     />
                                 </div>
                             ))}

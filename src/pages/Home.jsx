@@ -1,3 +1,4 @@
+import Footer from "@/components/footer-layout";
 import BenefitItem from "@/components/Home/benefit-item";
 import CheckedItem from "@/components/Home/checked-item";
 import ContactUs from "@/components/Home/contact-us";
@@ -306,6 +307,7 @@ export default function Home() {
             </section> */}
 
             <ContactUs />
+            <Footer />
         </div>
     )
 }
