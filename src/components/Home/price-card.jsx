@@ -35,7 +35,7 @@ function PriceCard({ title, description, price, features }) {
                 target="_blank"
                 className="home-button-white mt-12 md:mt-8 lg:mt-12 inline-block"
             >
-                Book a Demo
+                Buy Now
             </Link>
         </div>
     );

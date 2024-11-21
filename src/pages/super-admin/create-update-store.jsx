@@ -1,5 +1,5 @@
-"use client";
-
+import CustomInputComponent from "@/components/shared/custom-inputs";
+import CustomSelectComponent from "@/components/shared/custom-select";
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -10,24 +10,26 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Title from "@/components/ui/title";
 import { showAlert } from "@/lib/catch-async-api";
-import generateStoreID from "@/lib/store-id-generator";
 import { storeShema } from "@/schemas/store-schema";
+import { getSuperAdminPlansFn } from "@/services/super-admin/plan-service";
 import {
     createStoreFn,
     getSingleStoreFn,
     updateSingleStoreFn,
 } from "@/services/super-admin/store-service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CameraIcon, CopyCheckIcon, CopyIcon } from "lucide-react";
+import { State } from "country-state-city";
+import { CameraIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function CreateUpdateStore() {
+    const [plans, setPlans] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [copySuccess, setCopySuccess] = useState(false);
     const navigate = useNavigate();
     const { status, store_id } = useParams();
     const defaultValues = useMemo(
@@ -36,7 +38,10 @@ export default function CreateUpdateStore() {
             email: "",
             number: "",
             store_name: "",
-            store_id: status === "add" ? generateStoreID() : "",
+            plan_id: "",
+            state: "",
+            city: "",
+            area: "",
             ...(status === "add" && { password: "" }),
         }),
         [status]
@@ -52,39 +57,43 @@ export default function CreateUpdateStore() {
 
     // Handle form submission
     const onSubmit = async (data) => {
+        console.log(data);
         const formData = new FormData();
 
-        // Append form data fields
-        formData.append("name", data.name);
-        formData.append("email", data.email);
-        formData.append("number", data.number);
-        formData.append("store_name", data.store_name);
-        formData.append("store_id", data.store_id);
+        console.log(data);
 
-        setLoading(true);
-        if (status === "add") {
-            formData.append("password", data.password);
-            if (!file) {
-                setLoading(false);
-                return showAlert({ message: "Image is required" }, true);
-            }
-            formData.append("logo", file);
-            createStoreFn(formData)
-                .then((data) => {
-                    navigate("/super-admin/stores");
-                    window.location.href = data?.data;
-                    showAlert(data);
-                })
-                .finally(() => setLoading(false));
-        } else {
-            if (file) formData.append("logo", file);
-            updateSingleStoreFn({ store_id, formData })
-                .then((data) => {
-                    navigate("/super-admin/stores");
-                    showAlert(data);
-                })
-                .finally(() => setLoading(false));
-        }
+        // Append form data fields
+        // formData.append("name", data.name);
+        // formData.append("email", data.email);
+        // formData.append("number", data.number);
+        // formData.append("store_name", data.store_name);
+        // formData.append("store_id", data.store_id);
+
+        // setLoading(true);
+        // if (status === "add") {
+        //     formData.append("password", data.password);
+        //     if (!file) {
+        //         setLoading(false);
+        //         return showAlert({ message: "Image is required" }, true);
+        //     }
+        //     formData.append("logo", file);
+        //     createStoreFn(formData)
+        //         .then((data) => {
+        //             navigate("/super-admin/stores");
+        //             window.location.href = data?.data;
+        //             showAlert(data);
+        //         })
+        //         .finally(() => setLoading(false));
+        // } else {
+        //     if (file) formData.append("logo", file);
+        //     formData.append("plan",);
+        //     updateSingleStoreFn({ store_id, formData })
+        //         .then((data) => {
+        //             navigate("/super-admin/stores");
+        //             showAlert(data);
+        //         })
+        //         .finally(() => setLoading(false));
+        // }
     };
 
     // Handle image preview
@@ -101,25 +110,29 @@ export default function CreateUpdateStore() {
         if (status === "update" && store_id) {
             getSingleStoreFn(store_id).then(({ data }) => {
                 form.reset({
+                    acc_id: data?.acc_id,
                     name: data?.name,
                     email: data?.email,
                     number: data?.number,
                     store_name: data?.store_name,
                     store_id: data?.store_id,
+                    plan_id: data?.plan_id.toString(),
+                    state: data?.state,
+                    city: data?.city,
+                    area: data?.area
                 });
                 setImage(data?.logo);
             });
         }
     }, [form, status, store_id]);
 
-    const handleCopy = () => {
-        const storeId = form.getValues("store_id");
-        navigator.clipboard.writeText(storeId).then(() => {
-            setCopySuccess(true);
-            showAlert({ message: "Store copied successfully." })
-            setTimeout(() => setCopySuccess(false), 5000);
-        });
-    };
+    console.log(form.formState.errors);
+
+
+    useEffect(() => {
+        getSuperAdminPlansFn()
+            .then(data => setPlans(data?.data?.map((p) => ({ label: p.plan_type, value: p.plan_id.toString() }))));
+    }, [])
 
     return (
         <div className="max-w-[1000px] mx-auto">
@@ -145,16 +158,6 @@ export default function CreateUpdateStore() {
                         onChange={handleImage}
                     />
                 </div>
-                <div className="my-4">
-                    <code className="bg-accent px-1 py-2 flex gap-2 items-center w-72">
-                        Store ID: {form.getValues("store_id")}
-                        {copySuccess ? (
-                            <CopyCheckIcon className="w-4 h-4 text-green-500" />
-                        ) : (
-                            <CopyIcon className="w-4 h-4 cursor-pointer" onClick={handleCopy} />
-                        )}
-                    </code>
-                </div>
 
                 <Form {...form}>
                     <form
@@ -162,75 +165,71 @@ export default function CreateUpdateStore() {
                         className="mt-4 space-y-4"
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <FormField
-                                control={form.control}
-                                name="name"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Name</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Store Owner Name" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+
+                            <CustomInputComponent
+                                label={"Name"}
+                                name={"name"}
+                                placeholder={"Owner Name"}
+                                form={form}
                             />
 
-                            <FormField
-                                control={form.control}
-                                name="email"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Email</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Owner Email" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+                            <CustomInputComponent
+                                label={"Email"}
+                                name={"email"}
+                                placeholder={"Owner Email"}
+                                form={form}
                             />
 
-                            <FormField
-                                control={form.control}
-                                name="number"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Phone Number</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Contact Number" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+                            <CustomInputComponent
+                                label={"Phone Number"}
+                                name={"number"}
+                                placeholder={"Phone number"}
+                                form={form}
                             />
 
-                            <FormField
-                                control={form.control}
-                                name="store_name"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Store Name</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Store Name" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+                            <CustomInputComponent
+                                label={"Store Name"}
+                                name={"store_name"}
+                                placeholder={"Store Name"}
+                                form={form}
                             />
 
-                            <FormField
-                                control={form.control}
-                                name="store_id"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Store ID</FormLabel>
-                                        <FormControl>
-                                            <Input disabled placeholder="Store ID" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
+                            <CustomInputComponent
+                                label={"State"}
+                                name={"state"}
+                                placeholder={"state"}
+                                form={form}
                             />
+
+                            <CustomInputComponent
+                                label={"City"}
+                                name={"city"}
+                                placeholder={"city"}
+                                form={form}
+                            />
+
+                            <CustomInputComponent
+                                label={"Area"}
+                                name={"area"}
+                                placeholder={"Near Landmark"}
+                                form={form}
+                            />
+
+                            <CustomSelectComponent
+                                form={form}
+                                label={"Plans"}
+                                options={plans}
+                                name={"plan_id"}
+                                placeholder={"Select Plan"}
+                            />
+
+                            <CustomInputComponent
+                                label={"Plan"}
+                                name={"area"}
+                                placeholder={"Near Landmark"}
+                                form={form}
+                            />
+
 
                             {status === "add" && (
                                 <FormField

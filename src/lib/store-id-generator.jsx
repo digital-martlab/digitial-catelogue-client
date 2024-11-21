@@ -6,3 +6,10 @@ export default function generateStoreID() {
     return `${prefix}-${randomNumber}${randomString}`;
 }
 
+// function generateStoreID() {
+//     const prefix = "STORE";
+//     const timestamp = Date.now().toString(36).toUpperCase(); // Unique part based on time
+//     const randomString = Math.random().toString(36).substr(2, 5).toUpperCase();
+
+//     return `${prefix}-${timestamp}${randomString}`;
+// }

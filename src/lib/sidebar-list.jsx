@@ -1,4 +1,4 @@
-import { ChartBarStacked, Contact2Icon, LayoutDashboard, Palette, ShoppingBag, StoreIcon, TagIcon } from "lucide-react";
+import { ChartBarStacked, Contact2Icon, LayoutDashboard, Palette, ShoppingBag, SquareKanban, StoreIcon, TagIcon } from "lucide-react";
 
 export const SuperAdminSidbarList = [
     {
@@ -18,6 +18,12 @@ export const SuperAdminSidbarList = [
         title: "Contact",
         icon: Contact2Icon,
         link: "/super-admin/contacts"
+    },
+    {
+        _id: 4,
+        title: "Plans",
+        icon: SquareKanban,
+        link: "/super-admin/plans"
     }
 ]
 

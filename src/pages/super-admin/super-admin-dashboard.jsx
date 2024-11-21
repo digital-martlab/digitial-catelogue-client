@@ -9,7 +9,7 @@ export default function SuperAdminDashboard() {
     const [loading, setLoading] = useState(true);
     const [dashboardData, setDasboardData] = useState({
         total_stores: 0,
-        total_contacts: 1
+        total_contacts: 0
     })
 
     useEffect(() => {

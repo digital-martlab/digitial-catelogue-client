@@ -11,6 +11,7 @@ import AdminProductList from "@/pages/admin/product-list-admin";
 import AddUpdateProduct from "@/components/admin/add-update-product";
 import AdminThemeCustomizer from "@/pages/admin/admin-theme-customizer";
 import SuperAdminContactsList from "@/pages/super-admin/super-admin-contacts";
+import SuperAdminPlans from "@/pages/super-admin/super-admin-plans";
 
 export const protectedRoutes = [
     // SUPER ADMIN ROUTES
@@ -48,6 +49,12 @@ export const protectedRoutes = [
         _id: 6,
         element: <SuperAdminContactsList />,
         link: "/super-admin/contacts",
+        assignedRoles: [ROLES.SUPER_ADMIN]
+    },
+    {
+        _id: 6,
+        element: <SuperAdminPlans />,
+        link: "/super-admin/plans",
         assignedRoles: [ROLES.SUPER_ADMIN]
     },
 

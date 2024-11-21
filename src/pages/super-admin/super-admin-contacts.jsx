@@ -123,6 +123,10 @@ export default function SuperAdminContactsList() {
                                 <p className="text-sm font-medium">Phone</p>
                                 <p>{selectedContact.phone}</p>
                             </div>
+                            {selectedContact?.referral_id && <div>
+                                <p className="text-sm font-medium">Referral Id</p>
+                                <p>{selectedContact.referral_id}</p>
+                            </div>}
                             <div>
                                 <p className="text-sm font-medium">Message</p>
                                 <Textarea value={selectedContact.message} disabled className="mt-1" />

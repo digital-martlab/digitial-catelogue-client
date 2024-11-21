@@ -8,6 +8,7 @@ const initialState = {
     email: "",
     phone: "",
     message: "",
+    referral_id: ""
 };
 
 export default function ContactUs() {
@@ -51,16 +52,17 @@ export default function ContactUs() {
             <div className="rounded-lg bg-home flex flex-col items-center justify-between w-full md:w-[40%] p-5 shadow-xl self-stretch">
                 <div className="text-center px-5 mt-8">
                     <h3 id="contact-us-heading" className="text-2xl sm:text-3xl font-semibold text-white">
-                        Ready to Take Your <br /> Business Online?
+                        Start Your <br /> 15-Day Free Trial Today!
                     </h3>
-                    <a href="tel:+918299207159" className="home-button-white mx-auto inline-block mt-8" aria-label="Call us at +918299207159">
-                        Call Now
+                    {/* Razorpay payment */}
+                    <a href="#" className="home-button-white mx-auto inline-block mt-8" aria-label="Get started with your 15-day free trial">
+                        Start Now
                     </a>
                 </div>
                 <LazyLoadImage
                     className="mt-6 drop-shadow-2xl w-2/3"
                     src="./images/product-screens-2.png"
-                    alt="Call to action"
+                    alt="Call to action - Start Your Free Trial"
                 />
             </div>
             <div className="w-full md:w-[40%] px-4">
@@ -68,7 +70,7 @@ export default function ContactUs() {
                     Get in Touch with Us
                 </h2>
                 <div className="max-w-lg mx-auto p-8 rounded-lg shadow-lg bg-white" aria-live="polite">
-                    <form onSubmit={handleSubmit} className="space-y-4" aria-labelledby="contact-form-heading">
+                    <form onSubmit={handleSubmit} className="space-y-3" aria-labelledby="contact-form-heading">
                         <div>
                             <label className="block text-sm font-semibold text-gray-700" htmlFor="name">
                                 Name
@@ -82,7 +84,7 @@ export default function ContactUs() {
                                 required
                                 aria-invalid={formErrors.name ? "true" : "false"}
                                 aria-describedby={formErrors.name ? "name-error" : undefined}
-                                className={`w-full p-3 border ${formErrors.name ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
+                                className={`w-full p-2 border ${formErrors.name ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
                             />
                             {formErrors.name && <p className="text-red-500 text-sm" id="name-error">{formErrors.name}</p>}
                         </div>
@@ -99,7 +101,7 @@ export default function ContactUs() {
                                 required
                                 aria-invalid={formErrors.email ? "true" : "false"}
                                 aria-describedby={formErrors.email ? "email-error" : undefined}
-                                className={`w-full p-3 border ${formErrors.email ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
+                                className={`w-full p-2 border ${formErrors.email ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
                             />
                             {formErrors.email && <p className="text-red-500 text-sm" id="email-error">{formErrors.email}</p>}
                         </div>
@@ -116,9 +118,24 @@ export default function ContactUs() {
                                 required
                                 aria-invalid={formErrors.phone ? "true" : "false"}
                                 aria-describedby={formErrors.phone ? "phone-error" : undefined}
-                                className={`w-full p-3 border ${formErrors.phone ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
+                                className={`w-full p-2 border ${formErrors.phone ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
                             />
                             {formErrors.phone && <p className="text-red-500 text-sm" id="phone-error">{formErrors.phone}</p>}
+                        </div>
+                        <div>
+                            <label className="block text-sm font-semibold text-gray-700" htmlFor="referral_id">
+                                Referral Id (Optional)
+                            </label>
+                            <input
+                                id="referral_id"
+                                type="text"
+                                name="referral_id"
+                                value={formData.referral_id}
+                                onChange={handleChange}
+                                aria-invalid={formErrors.phone ? "true" : "false"}
+                                aria-describedby={formErrors.phone ? "phone-error" : undefined}
+                                className={`w-full p-2 border ${formErrors.phone ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
+                            />
                         </div>
                         <div>
                             <label className="block text-sm font-semibold text-gray-700" htmlFor="message">
@@ -130,16 +147,16 @@ export default function ContactUs() {
                                 value={formData.message}
                                 onChange={handleChange}
                                 required
-                                rows="5"
+                                rows="4"
                                 aria-invalid={formErrors.message ? "true" : "false"}
                                 aria-describedby={formErrors.message ? "message-error" : undefined}
-                                className={`w-full p-3 border ${formErrors.message ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
+                                className={`w-full p-2 border ${formErrors.message ? "border-red-500" : "border-gray-300"} rounded-lg focus:outline-none focus:ring-2 focus:ring-home transition duration-300`}
                             />
                             {formErrors.message && <p className="text-red-500 text-sm" id="message-error">{formErrors.message}</p>}
                         </div>
                         <button
                             type="submit"
-                            className={`w-full p-3 text-white bg-home rounded-lg hover:bg-home-dark transition duration-300 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+                            className={`w-full p-2 text-white bg-home rounded-lg hover:bg-home-dark transition duration-300 ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
                             disabled={isSubmitting}
                             aria-label={isSubmitting ? "Sending your message" : "Send Message"}
                         >
