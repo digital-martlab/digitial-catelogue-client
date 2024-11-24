@@ -83,19 +83,20 @@ export default function SuperAdminStoreList() {
                             <TableCell className="text-sm text-center font-bold">Email</TableCell>
                             <TableCell className="text-sm text-center font-bold">Phone</TableCell>
                             <TableCell className="text-sm text-center font-bold">Logo</TableCell>
+                            <TableCell className="text-sm text-center font-bold">State</TableCell>
+                            <TableCell className="text-sm text-center font-bold">City</TableCell>
                             <TableCell className="text-sm text-center font-bold">Created Date</TableCell>
-                            <TableCell className="text-sm text-center font-bold">Updated Date</TableCell>
                             <TableCell className="text-sm text-center font-bold">Expire Date</TableCell>
                             <TableCell className="text-sm text-center font-bold">Active</TableCell>
                             <TableCell className="text-sm text-center font-bold">Visit Store</TableCell>
                             <TableCell className="text-sm text-center font-bold">Actions</TableCell>
                         </TableRow>
                     </TableHeader>
-                    {loading && <ShimmerTableBody row={10} coloumn={12} />}
+                    {loading && <ShimmerTableBody row={10} coloumn={13} />}
                     {!loading &&
                         <TableBody>
                             {!loading && stores.length === 0 && (<TableRow>
-                                <TableCell className="min-h-[500px]" colSpan={12}>
+                                <TableCell className="min-h-[500px]" colSpan={13}>
                                     <NotFound className="mx-auto" />
                                 </TableCell>
                             </TableRow>
@@ -114,8 +115,9 @@ export default function SuperAdminStoreList() {
                                     <TableCell className="text-sm text-center">
                                         <img src={store.logo} alt="logo" className="w-10 h-10 rounded-full mx-auto object-contain" />
                                     </TableCell>
+                                    <TableCell className="text-sm text-center">{store.state}</TableCell>
+                                    <TableCell className="text-sm text-center">{store.city}</TableCell>
                                     <TableCell className="text-sm text-center">{new Date(store.created_at).toLocaleDateString()}</TableCell>
-                                    <TableCell className="text-sm text-center">{new Date(store.updated_at).toLocaleDateString()}</TableCell>
                                     <TableCell className="text-sm text-center">{new Date(store.plan_expires_in).toLocaleDateString()}</TableCell>
                                     <TableCell className="text-sm text-center">
                                         {/* {store.is_active ? 'Active' : 'Inactive'} */}
@@ -135,7 +137,7 @@ export default function SuperAdminStoreList() {
                     }
                     <TableFooter>
                         <TableRow>
-                            <TableCell colSpan={12}>
+                            <TableCell colSpan={13}>
                                 <div className="flex justify-between items-center">
                                     <div className="flex items-center">
                                         <Pagination>

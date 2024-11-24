@@ -1,7 +1,7 @@
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 
-export default function CustomInputComponent({ name, label, placeholder, form }) {
+export default function CustomInputComponent({ name, label, placeholder, form, type = "text" }) {
     return (
         <FormField
             control={form.control}
@@ -10,7 +10,7 @@ export default function CustomInputComponent({ name, label, placeholder, form })
                 <FormItem>
                     <FormLabel>{label}</FormLabel>
                     <FormControl>
-                        <Input placeholder={placeholder} {...field} />
+                        <Input type={type} placeholder={placeholder} {...field} />
                     </FormControl>
                     <FormMessage />
                 </FormItem>

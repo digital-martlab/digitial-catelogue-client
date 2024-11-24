@@ -25,6 +25,8 @@ export const enpoints = {
         order: "/store/order",
     },
     home: {
-        contact: "/home/contact"
+        contact: "/home/contact",
+        buy_plan_order: "/buy-plan/order",
+        buy_plan_verify: "/buy-plan/verify"
     }
 }

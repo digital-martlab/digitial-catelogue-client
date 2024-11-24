@@ -3,7 +3,6 @@ import NotFound from "@/components/not-found";
 import CreateUpdatePlanPopup from "@/components/super-admin/add-update-plans";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
 import Title from "@/components/ui/title";
 import { showAlert } from "@/lib/catch-async-api";
 import { currencyIcon } from "@/lib/constants";
@@ -63,7 +62,7 @@ export default function SuperAdminPlans() {
                                     {plan.plan_price}
                                 </p>
                                 <p className="mt-1 text-muted-foreground">
-                                    Duration: {plan.plan_duration_months} months
+                                    Duration: {plan.plan_duration_months === 150 ? "15 Days" : `${plan.plan_duration_months} months`}
                                 </p>
                             </CardContent>
                             <CardFooter className="flex justify-end gap-2">
@@ -71,6 +70,7 @@ export default function SuperAdminPlans() {
                                     variant="default"
                                     size="sm"
                                     onClick={() => setToggle({ action: "edit", plan })}
+                                    disabled={plan.plan_duration_months === 150}
                                 >
                                     <Edit />
                                 </Button>
@@ -78,6 +78,7 @@ export default function SuperAdminPlans() {
                                     variant="destructive"
                                     size="sm"
                                     onClick={() => handleDelete(plan?.plan_id)}
+                                    disabled={plan.plan_duration_months === 150}
                                 >
                                     {isDeleting ? <LoadingSpinner /> : <Trash />}
                                 </Button>

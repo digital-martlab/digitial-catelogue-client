@@ -31,8 +31,7 @@ function PriceCard({ title, description, price, features }) {
             </div>
 
             <Link
-                to={`https://wa.me/918299207159?text=${encodedMessage}`}
-                target="_blank"
+                to={"/buy"}
                 className="home-button-white mt-12 md:mt-8 lg:mt-12 inline-block"
             >
                 Buy Now

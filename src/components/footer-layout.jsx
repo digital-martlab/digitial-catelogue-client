@@ -3,7 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function Footer() {
     return (
-        <footer className="mt-24 pt-12 pb-8 bg-gray-900 text-gray-300" aria-label="Footer">
+        <footer className="pt-12 pb-8 bg-secondary-foreground text-gray-300 mt-20" aria-label="Footer">
             <div className="container mx-auto px-6 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 text-center sm:text-left">
                 {/* Brand Section */}
                 <div className="flex flex-col items-center sm:items-start lg:col-span-2">

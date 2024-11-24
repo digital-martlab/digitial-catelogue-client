@@ -2,6 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { createContactFn } from "@/services/contact-service";
+import { Link } from "react-router-dom";
 
 const initialState = {
     name: "",
@@ -55,9 +56,9 @@ export default function ContactUs() {
                         Start Your <br /> 15-Day Free Trial Today!
                     </h3>
                     {/* Razorpay payment */}
-                    <a href="#" className="home-button-white mx-auto inline-block mt-8" aria-label="Get started with your 15-day free trial">
+                    <Link to="/buy" className="home-button-white mx-auto inline-block mt-8" aria-label="Get started with your 15-day free trial">
                         Start Now
-                    </a>
+                    </Link>
                 </div>
                 <LazyLoadImage
                     className="mt-6 drop-shadow-2xl w-2/3"
