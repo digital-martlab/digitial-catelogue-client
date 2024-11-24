@@ -1,3 +1,4 @@
+import { XIcon } from "lucide-react";
 import { Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -35,15 +36,15 @@ export default function PagesHeader() {
             </div>
             {/* Mobile Menu Button */}
             <button onClick={toggleMobileNav} className="md:hidden" aria-label={isMobileNavOpen ? "Close mobile navigation" : "Open mobile navigation"}>
-                {isMobileNavOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMobileNavOpen ? <XIcon size={24} /> : <Menu size={24} />}
             </button>
             {
                 isMobileNavOpen && (
-                    <nav className="md:hidden bg-white shadow-md p-4 absolute w-full left-0 top-24 z-50 animate-in fade-in" aria-label="Mobile navigation">
-                        <Link to={"/#header"} className="block py-2">Home</Link>
-                        <Link to={"/#features"} className="block py-2">Features</Link>
-                        <Link to={"/#benefits"} className="block py-2">Benefits</Link>
-                        <Link to={"/#contact-us"} className="block py-2" aria-label="Contact us">Contact Us</Link>
+                    <nav className="md:hidden bg-white shadow-md p-4 absolute w-full left-0 top-20 z-50 animate-in fade-in" aria-label="Mobile navigation">
+                        <a href={"/#header"} className="block py-2">Home</a>
+                        <a href={"/#features"} className="block py-2">Features</a>
+                        <a href={"/#benefits"} className="block py-2">Benefits</a>
+                        <a href={"/#contact-us"} className="block py-2" aria-label="Contact us">Contact Us</a>
                         {/* Uncomment these links if needed
             <Link to={"#price"} className="block py-2">Price</Link>
             <Link to={"#testimonial"} className="block py-2">Testimonials</Link>

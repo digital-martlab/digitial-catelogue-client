@@ -2,6 +2,8 @@ export const enpoints = {
     super_admin: {
         login: "/super-admin/login",
         store: "/super-admin/store",
+        paid_status_update: "/super-admin/store/payment-status",
+        pending_payment_store: "/super-admin/store/pending-payment-stores",
         dashboard: "/super-admin/dashboard",
         plan: "/super-admin/plan",
     },

@@ -74,6 +74,13 @@ export default function BuyPlan() {
                         setAfterOrderLoading(false);
                     }
                 },
+                modal: {
+                    ondismiss: () => {
+                        showAlert({
+                            message: 'Payment was canceled. Your store is registered, and details have been emailed. Please contact the administrator for assistance.'
+                        });
+                    }
+                }
             };
 
             const rzp = new window.Razorpay(options);
