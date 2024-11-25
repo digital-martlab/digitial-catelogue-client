@@ -49,19 +49,34 @@ export default function StoreProductListing() {
                 <title>{storeInfo?.store_name} - CatelogueWala</title>
                 <link rel="canonical" href={window.location.href} />
                 <link rel="icon" type="image/svg+xml" href={storeInfo?.logo} />
-                <meta
-                    property="og:title"
-                    content={`${storeInfo?.store_name} - CatelogueWala`}
-                />
-                <meta property="og:image" content={storeInfo?.logo} />
+
+                {/* Open Graph Meta Tags */}
+                {storeInfo?.meta_title && (
+                    <meta property="og:title" content={storeInfo.meta_title} />
+                )}
+                {storeInfo?.meta_description && (
+                    <meta property="og:description" content={storeInfo.meta_description} />
+                )}
+                {storeInfo?.meta_keywords && (
+                    <meta name="keywords" content={storeInfo.meta_keywords} />
+                )}
+                {storeInfo?.logo && (
+                    <meta property="og:image" content={storeInfo.logo} />
+                )}
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:type" content="website" />
+
+                {/* Twitter Meta Tags */}
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta
-                    name="twitter:title"
-                    content={`${storeInfo?.store_name} - CatelogueWala`}
-                />
-                <meta name="twitter:image" content={storeInfo?.logo} />
+                {storeInfo?.meta_title && (
+                    <meta name="twitter:title" content={storeInfo.meta_title} />
+                )}
+                {storeInfo?.meta_description && (
+                    <meta name="twitter:description" content={storeInfo.meta_description} />
+                )}
+                {storeInfo?.logo && (
+                    <meta name="twitter:image" content={storeInfo.logo} />
+                )}
             </Helmet>
             {onlyWidth >= 1024 && <StoreSidebar />}
             <section className="flex flex-col h-full">

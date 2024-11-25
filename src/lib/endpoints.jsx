@@ -17,7 +17,8 @@ export const enpoints = {
         dashboard: "/admin/dashboard",
         theme: "/admin/theme",
         forgotPassword: "/admin/forgot-password",
-        resetPassword: "/admin/reset-password"
+        resetPassword: "/admin/reset-password",
+        profile: "/admin/profile",
     },
     store: {
         storeInfo: "/store",

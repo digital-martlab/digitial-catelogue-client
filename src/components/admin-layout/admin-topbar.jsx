@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { AdminSidebarMobile } from "./admin-sidebar";
 import { Link } from "react-router-dom";
+import { RiProfileFill } from "react-icons/ri";
 
 export default function AdminTopBar() {
     const { auth, logoutFn } = useAuth();
@@ -30,6 +31,11 @@ export default function AdminTopBar() {
                                 <DropdownMenuItem>
                                     <Link to={`/store/${auth?.store_slug}`} className="flex gap-1 items-center cursor-pointer w-full">
                                         <Store className="w-4 h-4" /> Visit Store
+                                    </Link>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Link to={"/admin/profile"} className="flex gap-1 items-center cursor-pointer">
+                                        <RiProfileFill className="w-4 h-4" /> Store Information
                                     </Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>

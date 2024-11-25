@@ -12,7 +12,7 @@ export default function StoreSidebar() {
     return (
         <aside className="border-r p-4 h-full">
             <img
-                src={storeInfo?.logo}
+                src={storeInfo?.logo || "/images/logo.webp"}
                 alt="logo"
                 className="h-10 object-contain mx-auto"
             />
