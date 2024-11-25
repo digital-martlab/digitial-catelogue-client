@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import Title from "../ui/title";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 export default function AddUpdateProduct() {
     const { status, product_id } = useParams();
@@ -150,14 +152,15 @@ export default function AddUpdateProduct() {
 
                         <div className="flex flex-col space-y-3">
                             <Label htmlFor="description">Description</Label>
-                            <Textarea
+                            <ReactQuill className="border rounded-md p-2 relative" theme="snow" value={description} onChange={setDescription} />;
+                            {/* <Textarea
                                 id="description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 placeholder="Enter product description"
                                 rows="4"
                                 className="border rounded-md p-2"
-                            />
+                            /> */}
                         </div>
                     </div>
 

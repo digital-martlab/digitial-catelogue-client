@@ -64,7 +64,7 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                             <span className="rounded-sm bg-accent px-2 py-1 text-xs">{item.ctg_name}</span>
                         </div>
                         <p className="text-lg font-semibold">{item.title}</p>
-                        <p className="text-sm text-gray-600">{item.description}</p>
+                        <p className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }}></p>
 
                         <div>
                             <p className="mb-2 text-sm">Select Variant:</p>
