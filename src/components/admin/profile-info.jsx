@@ -13,11 +13,14 @@ import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import { updateProfileFn } from "@/services/admin/profile-update";
 import { showAlert } from "@/lib/catch-async-api";
+import LoadingSpinner from "../loading-spinner";
 
 export default function AdminProfileInformation() {
-    const { auth, setAuth } = useAuth();
+    const { auth } = useAuth();
     const [file, setFile] = useState(null);
     const [image, setImage] = useState(null);
+    const [loading, setLoading] = useState(false);
+
 
     const defaultValues = useMemo(() => ({
         meta_title: auth?.meta_title || "",
@@ -42,11 +45,13 @@ export default function AdminProfileInformation() {
             formData.append("image", file);
         }
 
+        setLoading(true);
         updateProfileFn(formData)
             .then((data) => {
                 showAlert(data);
                 localStorage.setItem("digital_catelogue_app_token", data?.data);
                 window.location.reload();
+                setLoading(false);
             });
     };
 
@@ -168,10 +173,10 @@ export default function AdminProfileInformation() {
 
                     <Button
                         disabled={!form.formState.isDirty}
-                        className="mt-4 bg-primary hover:bg-primary-dark text-white py-2 rounded-md"
+                        className="mt-4"
                         type="submit"
                     >
-                        Save Changes
+                        {loading ? <LoadingSpinner className={"text-primary"} /> : "Save"}
                     </Button>
                 </form>
             </Form>
