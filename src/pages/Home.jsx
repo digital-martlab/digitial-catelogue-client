@@ -1,4 +1,3 @@
-import Footer from "@/components/footer-layout";
 import BenefitItem from "@/components/Home/benefit-item";
 import CheckedItem from "@/components/Home/checked-item";
 import ContactUs from "@/components/Home/contact-us";
@@ -6,13 +5,12 @@ import Feature from "@/components/Home/feature-items";
 import PriceCard from "@/components/Home/price-card";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { ArrowBigUp, Mail, Menu, Palette, PhoneCall, PlayIcon, Smartphone, Store, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowBigUp, Palette, PlayIcon, Smartphone, Store } from "lucide-react";
+import React, { useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 
 export default function Home() {
-    const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
     useEffect(() => {
         Aos.init({
@@ -21,48 +19,8 @@ export default function Home() {
         Aos.refresh();
     }, []);
 
-    const toggleMobileNav = () => {
-        setMobileNavOpen(prev => !prev);
-    };
-
     return (
-        <div id="header" className="text-[rgb(34,52,61)] bg-white">
-            {/* Header */}
-            <header
-                className="md:container flex justify-between shadow-md md:shadow-none h-20 px-4 items-center sticky top-0 bg-white z-50 animate-in fade-in"
-                aria-label="Main navigation header"
-            >
-                <a href={"#header"} className="text-3xl md:text-4xl font-bold h-full py-4" aria-label="Go to homepage">
-                    <LazyLoadImage src="./images/logo.webp" alt="CatalogueWala" width={100} height={54} />
-                </a>
-                <div className="hidden md:flex gap-4 items-center" role="navigation" aria-label="Primary navigation">
-                    <a href={"#header"} className="nav-item">Home</a>
-                    <a href={"#features"} className="nav-item">Features</a>
-                    <a href={"#benefits"} className="nav-item">Benefits</a>
-                    {/* Uncomment these links if needed
-        <a href={"#price"} className="nav-item">Price</a>
-        <a href={"#testimonial"} className="nav-item">Testimonials</a>
-        */}
-                    <a href="#contact-us" className="home-button hidden md:block" aria-label="Contact us">Contact Us</a>
-                </div>
-                {/* Mobile Menu Button */}
-                <button onClick={toggleMobileNav} className="md:hidden" aria-label={isMobileNavOpen ? "Close mobile navigation" : "Open mobile navigation"}>
-                    {isMobileNavOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-                {isMobileNavOpen && (
-                    <nav className="md:hidden bg-white shadow-md p-4 absolute w-full left-0 top-24 z-50 animate-in fade-in" aria-label="Mobile navigation">
-                        <a href={"#header"} className="block py-2">Home</a>
-                        <a href={"#features"} className="block py-2">Features</a>
-                        <a href={"#benefits"} className="block py-2">Benefits</a>
-                        <a href={"#contact-us"} className="block py-2" aria-label="Contact us">Contact Us</a>
-                        {/* Uncomment these links if needed
-            <a href={"#price"} className="block py-2">Price</a>
-            <a href={"#testimonial"} className="block py-2">Testimonials</a>
-            */}
-                    </nav>
-                )}
-            </header>
-
+        <div>
             <section
                 className="container mt-4 md:flex flex-row-reverse justify-between items-center text-[#22343D] aspect-video"
                 aria-labelledby="store-creation-heading"
@@ -251,7 +209,7 @@ export default function Home() {
                     <PriceCard
                         title="Yearly Plan"
                         description="Brief price description"
-                        price="4500"
+                        price="3500"
                         features={[
                             "Theme Customization",
                             "WhatsApp Integration",
@@ -263,7 +221,7 @@ export default function Home() {
                     <PriceCard
                         title="Half Yearly Plan"
                         description="Brief price description"
-                        price="3000"
+                        price="6200"
                         features={[
                             "Theme Customization",
                             "WhatsApp Integration",
@@ -307,7 +265,6 @@ export default function Home() {
             </section> */}
 
             <ContactUs />
-            <Footer />
         </div>
     )
 }

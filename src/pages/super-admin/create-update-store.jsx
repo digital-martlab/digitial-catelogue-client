@@ -10,7 +10,6 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Title from "@/components/ui/title";
 import { showAlert } from "@/lib/catch-async-api";
 import { storeShema } from "@/schemas/store-schema";
@@ -21,7 +20,6 @@ import {
     updateSingleStoreFn,
 } from "@/services/super-admin/store-service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { State } from "country-state-city";
 import { CameraIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -57,43 +55,45 @@ export default function CreateUpdateStore() {
 
     // Handle form submission
     const onSubmit = async (data) => {
-        console.log(data);
         const formData = new FormData();
 
-        console.log(data);
-
         // Append form data fields
-        // formData.append("name", data.name);
-        // formData.append("email", data.email);
-        // formData.append("number", data.number);
-        // formData.append("store_name", data.store_name);
-        // formData.append("store_id", data.store_id);
+        formData.append("name", data.name);
+        formData.append("email", data.email);
+        formData.append("number", data.number);
+        formData.append("store_name", data.store_name);
+        formData.append("plan_id", data.plan_id);
+        formData.append("state", data.state);
+        formData.append("city", data.city);
+        formData.append("area", data.area);
+        formData.append("meta_title", data.meta_title);
+        formData.append("meta_description", data.meta_description);
+        formData.append("meta_keywords", data.meta_keywords);
 
-        // setLoading(true);
-        // if (status === "add") {
-        //     formData.append("password", data.password);
-        //     if (!file) {
-        //         setLoading(false);
-        //         return showAlert({ message: "Image is required" }, true);
-        //     }
-        //     formData.append("logo", file);
-        //     createStoreFn(formData)
-        //         .then((data) => {
-        //             navigate("/super-admin/stores");
-        //             window.location.href = data?.data;
-        //             showAlert(data);
-        //         })
-        //         .finally(() => setLoading(false));
-        // } else {
-        //     if (file) formData.append("logo", file);
-        //     formData.append("plan",);
-        //     updateSingleStoreFn({ store_id, formData })
-        //         .then((data) => {
-        //             navigate("/super-admin/stores");
-        //             showAlert(data);
-        //         })
-        //         .finally(() => setLoading(false));
-        // }
+        setLoading(true);
+        if (status === "add") {
+            formData.append("password", data.password);
+            if (!file) {
+                setLoading(false);
+                return showAlert({ message: "Image is required" }, true);
+            }
+            formData.append("logo", file);
+            createStoreFn(formData)
+                .then((data) => {
+                    navigate("/super-admin/stores");
+                    window.location.href = data?.data;
+                    showAlert(data);
+                })
+                .finally(() => setLoading(false));
+        } else {
+            if (file) formData.append("logo", file);
+            updateSingleStoreFn({ store_id, formData })
+                .then((data) => {
+                    navigate("/super-admin/stores");
+                    showAlert(data);
+                })
+                .finally(() => setLoading(false));
+        }
     };
 
     // Handle image preview
@@ -115,23 +115,22 @@ export default function CreateUpdateStore() {
                     email: data?.email,
                     number: data?.number,
                     store_name: data?.store_name,
-                    store_id: data?.store_id,
                     plan_id: data?.plan_id.toString(),
                     state: data?.state,
                     city: data?.city,
-                    area: data?.area
+                    area: data?.area,
+                    meta_title: data?.meta_title,
+                    meta_description: data?.meta_description,
+                    meta_keywords: data?.meta_keywords,
                 });
                 setImage(data?.logo);
             });
         }
     }, [form, status, store_id]);
 
-    console.log(form.formState.errors);
-
-
     useEffect(() => {
         getSuperAdminPlansFn()
-            .then(data => setPlans(data?.data?.map((p) => ({ label: p.plan_type, value: p.plan_id.toString() }))));
+            .then(data => setPlans(data?.data?.map((p) => ({ label: `${p.plan_type} - ${p.plan_price}/-`, value: p.plan_id.toString() }))));
     }, [])
 
     return (
@@ -224,12 +223,25 @@ export default function CreateUpdateStore() {
                             />
 
                             <CustomInputComponent
-                                label={"Plan"}
-                                name={"area"}
-                                placeholder={"Near Landmark"}
+                                label={"Meta Title"}
+                                name={"meta_title"}
+                                placeholder={"SEO title"}
                                 form={form}
                             />
 
+                            <CustomInputComponent
+                                label={"Meta Description"}
+                                name={"meta_description"}
+                                placeholder={"SEO description"}
+                                form={form}
+                            />
+
+                            <CustomInputComponent
+                                label={"Meta Keywords"}
+                                name={"meta_keywords"}
+                                placeholder={"SEO keywords"}
+                                form={form}
+                            />
 
                             {status === "add" && (
                                 <FormField

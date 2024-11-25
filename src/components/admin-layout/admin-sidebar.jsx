@@ -20,6 +20,8 @@ export default function AdminSidebar() {
                     auth?.role === ROLES.SUPER_ADMIN
                         ? "/images/logo.webp"
                         : auth?.logo
+                            ? auth?.logo
+                            : "/images/logo.webp"
                 }
                 alt="logo"
                 className="h-10 object-contain mx-auto"

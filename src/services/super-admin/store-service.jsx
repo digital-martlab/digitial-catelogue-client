@@ -14,8 +14,18 @@ export const getAllStoresFn = apiAsyncHandle(async (payload) => {
     })
 })
 
+export const getAllStorePendingFn = apiAsyncHandle(async (payload) => {
+    return apiRequest.get(enpoints.super_admin.pending_payment_store, {
+        params: payload
+    })
+})
+
 export const updateStoreStatusFn = apiAsyncHandle(async (payload) => {
     return apiRequest.post(`${enpoints.super_admin.store}/${payload}`)
+})
+
+export const updatePaidStoreStatusFn = apiAsyncHandle(async (payload) => {
+    return apiRequest.patch(`${enpoints.super_admin.paid_status_update}/${payload}`)
 })
 
 export const getSingleStoreFn = apiAsyncHandle(async (payload) => {

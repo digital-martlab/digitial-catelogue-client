@@ -2,6 +2,8 @@ export const enpoints = {
     super_admin: {
         login: "/super-admin/login",
         store: "/super-admin/store",
+        paid_status_update: "/super-admin/store/payment-status",
+        pending_payment_store: "/super-admin/store/pending-payment-stores",
         dashboard: "/super-admin/dashboard",
         plan: "/super-admin/plan",
     },
@@ -15,7 +17,8 @@ export const enpoints = {
         dashboard: "/admin/dashboard",
         theme: "/admin/theme",
         forgotPassword: "/admin/forgot-password",
-        resetPassword: "/admin/reset-password"
+        resetPassword: "/admin/reset-password",
+        profile: "/admin/profile",
     },
     store: {
         storeInfo: "/store",
@@ -25,6 +28,8 @@ export const enpoints = {
         order: "/store/order",
     },
     home: {
-        contact: "/home/contact"
+        contact: "/home/contact",
+        buy_plan_order: "/buy-plan/order",
+        buy_plan_verify: "/buy-plan/verify"
     }
 }

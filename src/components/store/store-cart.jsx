@@ -7,12 +7,11 @@ import { applyCouponFn, cartOrderFn } from "@/services/store/store-service";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Minus, MoveLeft, MoveRight, Plus, Trash } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Button } from "../ui/button";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
-import { useNavigate } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const intialCoupon = {
     acc_id: "",
@@ -22,7 +21,6 @@ const intialCoupon = {
 }
 
 export default function StoreCart({ setShowCart }) {
-    const navigate = useNavigate("");
     const [cartAction, setCartAction] = useState("items");
     const [cartProducts, setCartProducts] = useState([]);
     const { cartItems, setCartItems, products, handleQuantityChange, handelDeleteCartItem, storeInfo, getAllProducts,
@@ -103,7 +101,6 @@ export default function StoreCart({ setShowCart }) {
                 setCartAction("items");
                 getAllProducts();
                 getFilterProducts();
-                localStorage.removeItem("digital_catelogue_app_cart");
                 window.location.href = data?.data;
             })
 

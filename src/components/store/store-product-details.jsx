@@ -4,7 +4,7 @@ import { currencyIcon } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
+import { Dialog, DialogContent } from "../ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 export default function StoreProductDetails({ item, setDisplayProductDetails }) {

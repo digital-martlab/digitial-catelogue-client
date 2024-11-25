@@ -12,6 +12,7 @@ import AddUpdateProduct from "@/components/admin/add-update-product";
 import AdminThemeCustomizer from "@/pages/admin/admin-theme-customizer";
 import SuperAdminContactsList from "@/pages/super-admin/super-admin-contacts";
 import SuperAdminPlans from "@/pages/super-admin/super-admin-plans";
+import AdminProfileInformation from "@/components/admin/profile-info";
 
 export const protectedRoutes = [
     // SUPER ADMIN ROUTES
@@ -105,6 +106,12 @@ export const protectedRoutes = [
         _id: "A8",
         element: <AdminThemeCustomizer />,
         link: "/admin/themes",
+        assignedRoles: [ROLES.ADMIN]
+    },
+    {
+        _id: "A9",
+        element: <AdminProfileInformation />,
+        link: "/admin/profile",
         assignedRoles: [ROLES.ADMIN]
     }
 ]

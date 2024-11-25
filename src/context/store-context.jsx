@@ -60,7 +60,6 @@ export default function StoreContextProvider({ children }) {
 
         item.quantity = 1;
         const newCartItems = [item, ...cartItems];
-        localStorage.setItem("digital_catelogue_app_cart", JSON.stringify(newCartItems));
         setCartItems(newCartItems);
         showAlert({ message: "Product added successfully." });
     };
@@ -73,8 +72,6 @@ export default function StoreContextProvider({ children }) {
                 }
                 return item;
             });
-
-            localStorage.setItem("digital_catelogue_app_cart", JSON.stringify(updatedItems));
             return updatedItems;
         });
     };
@@ -83,16 +80,8 @@ export default function StoreContextProvider({ children }) {
         const newCartItems = cartItems.filter((c) => {
             return !(c.product_id === product_id && c.variant_id === variant_id);
         });
-        localStorage.setItem("digital_catelogue_app_cart", JSON.stringify(newCartItems));
         setCartItems(newCartItems);
     }
-
-    useEffect(() => {
-        const storedCartItems = localStorage.getItem("digital_catelogue_app_cart");
-        if (storedCartItems) {
-            setCartItems(JSON.parse(storedCartItems));
-        }
-    }, []);
 
     return (
         <StoreContext.Provider value={{
