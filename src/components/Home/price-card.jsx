@@ -10,7 +10,7 @@ function PriceCard({ title, description, price, features }) {
     return (
         <div className="border min-w-[80vw] sm:min-w-[400px] md:min-w-full group even:bg-home even:text-white flex flex-col items-center rounded-xl shadow-borderShadow p-6">
             <h4 className="mt-6 font-bold text-2xl text-center">{title}</h4>
-            <p className="mt-2 text-center">{description}</p>
+            {/* <p className="mt-2 text-center">{description}</p> */}
 
             <div className="mt-6 flex items-center">
                 <p className="text-7xl text-home group-even:text-white font-bold">{currencyIcon}{price}</p>

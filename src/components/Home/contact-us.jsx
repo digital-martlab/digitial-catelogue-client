@@ -53,11 +53,11 @@ export default function ContactUs() {
             <div className="rounded-lg bg-home flex flex-col items-center justify-between w-full md:w-[40%] p-5 shadow-xl self-stretch">
                 <div className="text-center px-5 mt-8">
                     <h3 id="contact-us-heading" className="text-2xl sm:text-3xl font-semibold text-white">
-                        Start Your <br /> 15-Day Free Trial Today!
+                        Ready to Take Your <br /> Business Online?
                     </h3>
                     {/* Razorpay payment */}
-                    <Link to="/buy" className="home-button-white mx-auto inline-block mt-8" aria-label="Get started with your 15-day free trial">
-                        Start Now
+                    <Link to="tel:+918299207159" className="home-button-white mx-auto inline-block mt-8" aria-label="Get started with your 15-day free trial">
+                        Call Now
                     </Link>
                 </div>
                 <LazyLoadImage
