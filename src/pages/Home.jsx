@@ -197,6 +197,7 @@ export default function Home() {
                     <PriceCard
                         title="Monthly Plan"
                         // description="Brief price description"
+                        originalPrice={"1000"}
                         price="600"
                         features={[
                             "Theme Customization",
@@ -209,6 +210,7 @@ export default function Home() {
                     <PriceCard
                         title="Yearly Plan"
                         // description="Brief price description"
+                        originalPrice={"9000"}
                         price="6200"
                         features={[
                             "Theme Customization",
@@ -220,6 +222,7 @@ export default function Home() {
                     />
                     <PriceCard
                         title="Half Yearly Plan"
+                        originalPrice={"5000"}
                         // description="Brief price description"
                         price="3500"
                         features={[
