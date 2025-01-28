@@ -16,9 +16,9 @@ export function ProductGridLayout({ setDisplayProductDetails }) {
                         setDisplayProductDetails(item);
                     }}
                 >
-                    <span className="absolute left-2 top-2 rounded-lg bg-accent px-2 py-1 text-xs">
+                    {/* <span className="absolute left-2 top-2 rounded-lg bg-accent px-2 py-1 text-xs">
                         {item.ctg_name}
-                    </span>
+                    </span> */}
                     <div className="aspect-square">
                         <LazyLoadImage
                             alt={item.title}
