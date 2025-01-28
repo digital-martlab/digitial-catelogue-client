@@ -67,22 +67,26 @@ export default function AdminProductDetailsShow({ item, setDisplayProductDetails
                         <p className="text-sm text-gray-600" dangerouslySetInnerHTML={{ __html: item.description }}></p>
 
                         <div>
-                            <p className="mb-2 text-sm">Select Variant:</p>
-                            <Select
-                                value={selectedVariantIndex.toString()}
-                                onValueChange={(value) => setSelectedVariantIndex(parseInt(value, 10))}
-                            >
-                                <SelectTrigger>
-                                    <SelectValue placeholder="Choose a variant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {item.variants.map((variant, index) => (
-                                        <SelectItem key={variant.variant_id} value={index.toString()}>
-                                            {variant.variant_title}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                            {item.variants.length > 1 &&
+                                <>
+                                    <p className="mb-2 text-sm">Select Variant:</p>
+                                    <Select
+                                        value={selectedVariantIndex.toString()}
+                                        onValueChange={(value) => setSelectedVariantIndex(parseInt(value, 10))}
+                                    >
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Choose a variant" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {item.variants.map((variant, index) => (
+                                                <SelectItem key={variant.variant_id} value={index.toString()}>
+                                                    {variant.variant_title}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </>
+                            }
 
                             <div className="mt-4">
                                 <p className="text-sm">Selected Variant: <span>{selectedVariant?.variant_title}</span></p>
