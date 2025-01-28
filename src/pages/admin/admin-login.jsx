@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import useAuth from "@/hooks/use-auth";
 import { showAlert } from "@/lib/catch-async-api";
 import { forgotAdminFn, loginAdminFn } from "@/services/admin/login-service";
+import { Eye, EyeClosed } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +19,7 @@ export default function AdminLogin() {
     const [mail, setMail] = useState("");
     const [forgotPassword, setForgotPassword] = useState(false);
     const [forgotLoading, setForgotLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,6 +63,8 @@ export default function AdminLogin() {
         };
     }, []);
 
+    const EyeCustom = showPassword ? Eye : EyeClosed;
+
     return (
         <div className="flex justify-center items-center h-screen">
             <form onSubmit={handleSubmit} className="p-6 rounded-lg shadow-lg w-80">
@@ -80,7 +84,7 @@ export default function AdminLogin() {
                     />
                 </div>
 
-                <div className="mb-6 space-y-2">
+                <div className="mb-6 space-y-2 relative">
                     <Label htmlFor="password" className="block mb-1 font-medium">
                         Password
                     </Label>
@@ -92,6 +96,7 @@ export default function AdminLogin() {
                         placeholder="Enter password"
                         required
                     />
+                    <EyeCustom className="absolute right-2 -translate-y-1/2 top-1/2 w-4" onClick={() => setShowPassword(!showPassword)} />
                 </div>
 
                 <Button type="submit" className="w-full" size="sm" disabled={loading}>
